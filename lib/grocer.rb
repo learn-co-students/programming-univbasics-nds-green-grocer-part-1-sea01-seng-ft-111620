@@ -1,4 +1,22 @@
-require 'pry'
+def find_item_by_name_in_collection(name, collection)
+  collection.find{|hash| hash[:item] == name}
+end  
+
+def consolidate_cart(cart)
+  new_cart = []
+  cart.each{|hash|
+    if hash[:count]
+      hash[:count]+=1
+    else
+      hash[:count] = 1
+      new_cart << hash
+    end  
+  }
+  new_cart
+end  
+
+=begin
+OLD SOLUTION
 
 def find_item_by_name_in_collection(name, collection)
   i = 0
@@ -8,7 +26,7 @@ def find_item_by_name_in_collection(name, collection)
     end  
     i += 1
   end 
-  # Enumberables solution: collection.find {|hash| hash[:item] == name} 
+  
 end
 
 def consolidate_cart(cart)
@@ -26,3 +44,5 @@ def consolidate_cart(cart)
   end
   new_cart
 end
+
+=end
